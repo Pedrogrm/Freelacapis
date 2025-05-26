@@ -100,8 +100,8 @@
 }
 
 #container{
-    border-left: solid #672eba 40px;
-    border-right: solid #672eba 40px;
+    border-left: solid #421a85 40px;
+    border-right: solid #421a85 40px;
 }
 
 .img-fluid{
@@ -124,6 +124,7 @@ footer{
     height: 100%;
     width: 100%;
     padding: 30px;
+    background: #421a85;
 }
 
 h2 .modal-title {
