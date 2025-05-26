@@ -1,0 +1,135 @@
+/* Configurações para cor de fundo amarela */
+.bg-yellow{
+    background: #672eba;
+}
+
+/* Configurações para contorno e texto amarelo */
+.btn-outline-yellow{
+    color: #672eba;
+    border: 1px solid #672eba;
+}
+.btn-outline-yellow:hover{
+    background: #672eba;
+    color: #eeeeee;
+}
+
+/* Configurações para fundo laranja */
+.bg-orange{
+    background: #07f9b0;
+}
+.bg-orange:hover{
+    background: #672eba;
+}
+
+.navbar{
+    width: 100%;
+}
+
+.navbar-brand a{
+    width: 40%;
+    height: 40%;
+}
+
+.navbar-brand img{
+    width: 40%;
+    height: 40%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link i{
+    font-size: 40px;
+    color: black;
+    margin-left: 10px;
+}
+
+.nav-link i:hover{
+    cursor: pointer;
+}
+
+.form-control{
+    margin-right: 0px;
+    padding: 10px;
+}
+
+.btn-outline{
+    margin-right: 100px;
+    background-color: #672eba;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.btn-outline:hover{
+    cursor: pointer;
+}
+
+.toolbar-toggler{
+    color: black;
+    font-size: 50px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.toolbar-toggler:hover{
+    cursor: pointer;
+}
+
+.toolbar{
+    background: #eeeeee;
+}
+
+#toolbar{
+    list-style: none;
+}
+
+.toolbar-button{
+    border: 0;
+    background-color: #07f9b0;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.toolbar-button:hover {
+    background-color: #672eba;
+}
+
+#filter{
+    width: 50%;
+    margin-top: 20px;
+    margin-left: 400px;
+}
+
+#container{
+    border-left: solid #672eba 40px;
+    border-right: solid #672eba 40px;
+}
+
+.img-fluid{
+    width: 100%;
+    height: 100%;
+}
+
+.card{
+    background: #ececec;
+    border: none;
+}
+
+ul{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+}
+
+footer{
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
+h2 .modal-title {
+    padding-left: 200px;
+}
+
+.btn-primary {
+    background-color: #07f9b0;
+}
