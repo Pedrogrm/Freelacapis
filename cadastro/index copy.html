@@ -177,3 +177,69 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<?php
+$conn = conexaoBD();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Recebe dados do formulário
+    $cnpj = $_POST['cnpj'];
+    $email = $_POST['email'];
+    $senha = $_POST['password'];
+    $confirmar_senha = $_POST['confirm-password'];
+    
+    // Array para armazenar erros
+    $erros = []; 
+    
+    // Valida CNPJ (verifica se tem 14 dígitos)
+    if (!preg_match('/^\d{14}$/', $cnpj)) {
+        $erros[] = "CNPJ inválido! Deve conter 14 dígitos.";
+    }
+    
+    // Valida e-mail
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erros[] = "Por favor, insira um e-mail válido.";
+    }
+    
+    // Verifica se CNPJ já existe
+    $stmt = $pdo->prepare("SELECT * FROM empresas WHERE cnpj = :cnpj");
+    $stmt->execute(['cnpj' => $cnpj]);
+    if ($stmt->rowCount() > 0) {
+        $erros[] = "Este CNPJ já está cadastrado!";
+    }
+    
+    // Verifica se e-mail já existe
+    $stmt = $pdo->prepare("SELECT * FROM empresas WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    if ($stmt->rowCount() > 0) {
+        $erros[] = "Este e-mail já está em uso!";
+    }
+    
+    // Se não houver erros, cadastra no banco
+    if (empty($erros)) {
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+        
+        try {
+            $stmt = $pdo->prepare("INSERT INTO empresas (cnpj, email, senha) VALUES (:cnpj, :email, :senha)");
+            $stmt->execute([
+                'cnpj' => $cnpj,
+                'email' => $email,
+                'senha' => $senha_hash
+            ]);
+            
+            // Redireciona para página de login
+            header("Location: /login/loginfree.html");
+            exit();
+        } catch (PDOException $e) {
+            $erros[] = "Erro ao cadastrar: " . $e->getMessage();
+        }
+    }
+    
+    // Exibe erros se houver
+    if (!empty($erros)) {
+        foreach ($erros as $erro) {
+            echo "<div class='alert alert-danger'>$erro</div>";
+        }
+    }
+}
+?>
