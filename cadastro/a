@@ -1,5 +1,5 @@
 <?php
-require_once 'caminho/para/conexaoBD.php';
+require_once 'conexaoBD.php';
 
 $conn = conexaoBD();
 

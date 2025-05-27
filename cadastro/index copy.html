@@ -179,74 +179,84 @@
 </html>
 
 <?php
-require_once 'caminho/para/conexaoBD.php';
+require_once 'conexaobd.php';
+require_once 'Auth.php'; // Inclui a classe Auth
 
-$conn = conexaoBD();
+// Verifica se o formulário foi submetido
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Captura e sanitiza os dados
+    $cnpj = preg_replace('/[^0-9]/', '', $_POST['cnpj'] ?? '');
+    $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
+    $senha = $_POST['password'] ?? '';
+    $confirmarSenha = $_POST['confirm-password'] ?? '';
 
-// Array multidimensional para organizar melhor os erros
-$erros = [
-    'geral' => [],
-    'cnpj' => [],
-    'email' => [],
-    'senha' => []
-];
+    // Validações
+    $erros = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cnpj = preg_replace('/[^0-9]/', '', $_POST['cnpj']); // Remove formatação
-    $email = trim($_POST['email']);
-    $senha = $_POST['password'];
-    $confirmar_senha = $_POST['confirm-password'];
+    // Validação de campos obrigatórios
+    if (empty($cnpj)) $erros[] = "CNPJ é obrigatório.";
+    if (empty($email)) $erros[] = "E-mail é obrigatório.";
+    if (empty($senha)) $erros[] = "Senha é obrigatória.";
+    if ($senha !== $confirmarSenha) $erros[] = "As senhas não coincidem.";
 
-    // Validação do CNPJ
-    if (empty($cnpj)) {
-        $erros['cnpj'][] = "CNPJ é obrigatório";
-    } elseif (!preg_match('/^\d{14}$/', $cnpj)) {
-        $erros['cnpj'][] = "CNPJ deve conter 14 dígitos";
-    } else {
-        // Verifica se CNPJ já existe (só executa se o CNPJ for válido)
-        $stmt = $conn->prepare("SELECT id FROM empresas WHERE cnpj = ?");
-        $stmt->execute([$cnpj]);
-        if ($stmt->rowCount() > 0) {
-            $erros['cnpj'][] = "Este CNPJ já está cadastrado";
+    // Validação de CNPJ
+    if (strlen($cnpj) != 14) {
+        $erros[] = "CNPJ deve conter 14 dígitos.";
+    }
+
+    // Validação de e-mail
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erros[] = "Formato de e-mail inválido.";
+    }
+
+    // Verifica se CNPJ ou e-mail já existem
+    try {
+        $stmt = $pdo->prepare("SELECT id FROM empresas WHERE cnpj = ? OR email = ?");
+        $stmt->execute([$cnpj, $email]);
+        if ($stmt->fetch()) {
+            $erros[] = "CNPJ ou e-mail já cadastrados.";
         }
+    } catch (PDOException $e) {
+        $erros[] = "Erro ao verificar dados: " . $e->getMessage();
     }
 
-    // Validação do Email
-    if (empty($email)) {
-        $erros['email'][] = "E-mail é obrigatório";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erros['email'][] = "E-mail inválido";
-    } else {
-        // Verifica se email já existe
-        $stmt = $conn->prepare("SELECT id FROM empresas WHERE email = ?");
-        $stmt->execute([$email]);
-        if ($stmt->rowCount() > 0) {
-            $erros['email'][] = "Este e-mail já está em uso";
-        }
-    }
-
-    // Validação da Senha
-    if (empty($senha)) {
-        $erros['senha'][] = "Senha é obrigatória";
-    } elseif (strlen($senha) < 8) {
-        $erros['senha'][] = "Senha deve ter pelo menos 8 caracteres";
-    } elseif ($senha !== $confirmar_senha) {
-        $erros['senha'][] = "As senhas não coincidem";
-    }
-
-    // Se não houver erros em nenhum campo
-    if (empty($erros['cnpj']) && empty($erros['email']) && empty($erros['senha'])) {
-        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
-        
+    // Se não houver erros, procede com o cadastro
+    if (empty($erros)) {
         try {
-            $stmt = $conn->prepare("INSERT INTO empresas (cnpj, email, senha) VALUES (?, ?, ?)");
-            $stmt->execute([$cnpj, $email, $senha_hash]);
-            
-            header("Location: /login/loginfree.html?registro=sucesso");
+            // Hash da senha
+            $senhaHash = password_hash($senha, PASSWORD_ARGON2I);
+
+            // Insere no banco de dados
+            $stmt = $pdo->prepare("INSERT INTO empresas (cnpj, email, senha, perfil) VALUES (?, ?, ?, 'empresa')");
+            $stmt->execute([$cnpj, $email, $senhaHash]);
+
+            // Obtém o ID do novo usuário
+            $id = $pdo->lastInsertId();
+
+            // Prepara dados do usuário para a sessão
+            $usuario = [
+                'id' => $id,
+                'nome' => '', // Pode ser atualizado posteriormente
+                'usuario' => $email,
+                'perfil' => 'empresa'
+            ];
+
+            // Inicia sessão e redireciona
+            Auth::iniciarSessao($usuario);
+            header("Location: /dashboard.php");
             exit();
+
         } catch (PDOException $e) {
-            $erros['geral'][] = "Erro no cadastro: " . $e->getMessage();
+            $erros[] = "Erro ao cadastrar: " . $e->getMessage();
         }
+    }
+
+    // Se houver erros, exibe
+    if (!empty($erros)) {
+        session_start();
+        $_SESSION['erros_cadastro'] = $erros;
+        header("Location: /cadastro/empresa.php");
+        exit();
     }
 }
 ?>
