@@ -21,6 +21,11 @@
     background: #672eba;
 }
 
+/* Texto em branco */
+.color-white{
+    color: #eeeeee;
+}
+
 .navbar{
     width: 100%;
 }
@@ -33,7 +38,7 @@
 .navbar-brand img{
     width: 40%;
     height: 40%;
-    margin: 0;
+    margin-left: 80px;
     padding: 0;
 }
 
@@ -134,3 +139,26 @@ h2 .modal-title {
 .btn-primary {
     background-color: #07f9b0;
 }
+
+.nav-link .bi-person-fill{
+    color: #eeeeee;
+}
+
+.bi-list{
+    color: #eeeeee;
+}
+
+.modal-img{
+    width: 60%;
+    height: 60%;
+    margin-left: 100px;
+}
+
+.modal-header{
+    background: #421a85;
+}
+
+.modal-title{
+    color: #eeeeee;
+}
+
