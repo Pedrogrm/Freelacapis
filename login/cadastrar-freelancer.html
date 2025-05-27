@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro - Freelacapy</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #672eba;
+      --secondary-color: #00f7c2;
+      --dark-color: #2a2a2a;
+      --light-color: #f8f9fa;
+      --gray-color: #6c757d;
+    }
+    
+    body {
+      background-color: #f5f7ff;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 60px;
+    }
+
+    .login-wrapper {
+      max-width: 900px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row-reverse; /* Inverte a ordem dos painéis */
+      box-shadow: 0 10px 30px rgba(103, 46, 186, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .login-wrapper:hover {
+      box-shadow: 0 15px 35px rgba(103, 46, 186, 0.2);
+    }
+
+    /* Painel direito (roxo) - Agora está à direita */
+    .right-panel {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #8a3ffb 100%);
+      color: white;
+      flex: 1;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .right-panel::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .right-panel::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -30px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .right-panel img {
+      width: 100px;
+      margin-bottom: 25px;
+      z-index: 1;
+    }
+
+    .right-panel h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      z-index: 1;
+    }
+
+    .right-panel span {
+      color: var(--secondary-color);
+    }
+
+    .right-panel p {
+      font-size: 15px;
+      opacity: 0.9;
+      margin-bottom: 25px;
+      z-index: 1;
+    }
+
+    .btn-register {
+      margin-top: 10px;
+      background-color: var(--secondary-color);
+      border: none;
+      padding: 12px 60px;
+      font-weight: 600;
+      border-radius: 50px;
+      font-size: 16px;
+      color: white;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      z-index: 1;
+      box-shadow: 0 4px 15px rgba(0, 247, 194, 0.3);
+    }
+
+    .btn-register:hover {
+      background-color: #00e5b8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 247, 194, 0.4);
+    }
+
+    /* Painel esquerdo (formulário) - Agora está à esquerda */
+    .left-panel {
+      flex: 1;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-panel h3 {
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--dark-color);
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      padding: 12px 20px 12px 45px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.2rem rgba(103, 46, 186, 0.1);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-color);
+      font-size: 18px;
+    }
+
+    .btn-submit {
+      background-color: var(--primary-color);
+      color: white;
+      width: 100%;
+      padding: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(103, 46, 186, 0.3);
+    }
+
+    .btn-submit:hover {
+      background-color: #5a25a8;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(103, 46, 186, 0.4);
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--gray-color);
+    }
+
+    .form-footer a {
+      color: var(--primary-color);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .espaço {
+      margin-top: 100px;
+    }
+
+    .form-footer a:hover {
+      transition: 1s;
+      color: #00f7c2;
+    }
+    
+    /* Efeitos para mobile */
+    @media (max-width: 768px) {
+      .login-wrapper {
+        flex-direction: column;
+        margin: 20px;
+        border-radius: 15px;
+      }
+
+      .left-panel,
+      .right-panel {
+        padding: 30px 25px;
+        border-radius: 0;
+      }
+
+      .right-panel::before,
+      .right-panel::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body class="espaço">
+  <div class="login-wrapper">
+    <!-- Painel direito (roxo) -->
+    <div class="right-panel text-center">
+      <img src="/img/Logo FreelaCapy branco.png" alt="Logo Freelacapy" />
+      <h2><span>Bem-vindo</span> ao Freelacapy!</h2>
+      <p>Conecte-se com os melhores freelancers ou encontre projetos incríveis.</p>
+      <p class="mt-3 mb-2">Já tem uma conta?</p>
+      <a href="/login/tela-inicial-freelancer.html" class="btn btn-register">Entrar</a>
+    </div>
+
+    <!-- Painel esquerdo (formulário de cadastro) -->
+    <div class="left-panel">
+      <h3>Crie sua conta</h3>
+      <form action="/cadastro" method="POST">
+        <div class="form-group">
+          <i class="bx bxs-user input-icon"></i>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            placeholder="Nome completo"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <i class="bx bxs-envelope input-icon"></i>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="E-mail"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <i class="bx bxs-lock input-icon"></i>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Senha (mínimo 8 caracteres)"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-submit">Cadastrar</button>
+        <div class="form-footer">
+          É uma empresa? <a href="cadastrar-empresa.html">Cadastre aqui.</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
