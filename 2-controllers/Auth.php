@@ -74,12 +74,12 @@ class Auth {
                 'editar' => false,
                 'excluir' => false
             ],
-            'usuario' => [
-                'visualizar' => true,
-                'adicionar' => false,
-                'editar' => false,
-                'excluir' => false
-            ],
+            // 'usuario' => [
+            //     'visualizar' => true,
+            //     'adicionar' => false,
+            //     'editar' => false,
+            //     'excluir' => false
+            // ],
         ];
 
         if (!isset($permissoes[$usuario['perfil']]) || !isset($permissoes[$usuario['perfil']][$acao])) {
@@ -89,10 +89,6 @@ class Auth {
         return $permissoes[$usuario['perfil']][$acao];
         
     }
-
-
-
-
 
 }
 
