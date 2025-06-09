@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Freelacapy</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Boxicons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #672eba;
+      --secondary-color: #00f7c2;
+      --dark-color: #2a2a2a;
+      --light-color: #f8f9fa;
+      --gray-color: #6c757d;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 100%);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .login-wrapper {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      box-shadow: 0 15px 30px rgba(103, 46, 186, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .login-wrapper:hover {
+      box-shadow: 0 20px 40px rgba(103, 46, 186, 0.15);
+    }
+
+    /* Painel esquerdo */
+    .left-panel {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #8a3ffb 100%);
+      color: white;
+      flex: 1;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
+      z-index: 2;
+    }
+
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .left-panel::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -30px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .left-panel img {
+      width: 100px;
+      margin-bottom: 25px;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .left-panel h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .left-panel span {
+      color: var(--secondary-color);
+    }
+
+    .left-panel p {
+      font-size: 15px;
+      opacity: 0.9;
+      margin-bottom: 25px;
+      z-index: 1;
+    }
+
+    .btn-register {
+      margin-top: 10px;
+      background-color: var(--secondary-color);
+      border: none;
+      padding: 12px 35px;
+      font-weight: 600;
+      border-radius: 50px;
+      font-size: 16px;
+      color: white;
+      transition: all 0.3s ease;
+      z-index: 1;
+      box-shadow: 0 4px 15px rgba(0, 247, 194, 0.3);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-register:hover {
+      background-color: #00e5b8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 247, 194, 0.4);
+    }
+
+    /* Painel direito */
+    .right-panel {
+      flex: 1;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.6s ease-in-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    .right-panel h3 {
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--dark-color);
+      font-size: 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      padding: 12px 20px 12px 45px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.2rem rgba(103, 46, 186, 0.1);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-color);
+      font-size: 18px;
+    }
+
+    .btn-login {
+      background-color: var(--primary-color);
+      color: white;
+      width: 100%;
+      padding: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(103, 46, 186, 0.3);
+    }
+
+    .btn-login:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(103, 46, 186, 0.4);
+      color: white;
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--gray-color);
+    }
+
+    .link {
+      font-size: 0.9rem; 
+      text-decoration: none;
+    }
+    
+    .senha {
+      color: #501fa0;
+    }
+
+    .senha:hover {
+      transition-duration: 1s;
+      color: #00f7c2;
+    }
+
+    .empresa {
+      color: #00f7c2;
+    }
+
+    .empresa:hover {
+      transition-duration: 1s;
+      color: #501fa0;
+    }
+
+    /* Novas classes de animação */
+    .slide-out-to-right {
+      animation: slideOutToRight 0.6s ease-in-out forwards;
+    }
+
+    .slide-in-from-left {
+      animation: slideInFromLeft 0.6s ease-in-out forwards;
+    }
+
+    @keyframes slideOutToRight {
+      from { transform: translateX(0); }
+      to { transform: translateX(100%); }
+    }
+
+    @keyframes slideInFromLeft {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+
+    /* Animação existente ajustada */
+    .slide-in-from-right {
+      animation: slideInFromRight 0.6s ease-in-out forwards;
+    }
+
+    @keyframes slideInFromRight {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    /* Efeitos para mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      
+      .login-wrapper {
+        flex-direction: column;
+        border-radius: 15px;
+      }
+
+      .left-panel,
+      .right-panel {
+        padding: 30px 25px;
+        border-radius: 0;
+      }
+
+      .left-panel::before,
+      .left-panel::after {
+        display: none;
+      }
+
+      /* Ajustes para animações no mobile */
+      .slide-out-to-right {
+        animation: slideOutToBottom 0.6s ease-in-out forwards;
+      }
+
+      .slide-in-from-right {
+        animation: slideInFromTop 0.6s ease-in-out forwards;
+      }
+
+      @keyframes slideOutToBottom {
+        from { transform: translateY(0); }
+        to { transform: translateY(100%); }
+      }
+
+      @keyframes slideInFromTop {
+        from { transform: translateY(-100%); }
+        to { transform: translateY(0); }
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-wrapper">
+    
+    <!-- Painel Esquerdo -->
+    <div class="left-panel text-center">
+      <img src="/img/Logo FreelaCapy branco.png" alt="Logo Freelacapy">
+      <h2><span>Bem-vindo</span> <br> de volta!</h2>
+      <p>Acesse sua conta e continue conectado com os melhores freelancers.</p>
+      <p class="mt-3 mb-3">Não tem uma conta?</p>
+      <a href="#" id="registerBtn" class="btn btn-register mt-0">Cadastrar-se</a>
+    </div>
+
+    <!-- Painel Direito -->
+    <div class="right-panel">
+      <h3>Faça seu login</h3>
+      <form>
+        <div class="form-group">
+          <i class='bx bxs-user input-icon'></i>
+          <input 
+            type="text"
+            class="form-control" 
+            placeholder="Nome (nome completo)" 
+            required>
+        </div>
+
+        <div class="form-group">
+          <i class="bx bxs-envelope input-icon"></i>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="E-mail"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <i class='bx bxs-lock-alt input-icon'></i>
+          <input 
+            type="password" 
+            class="form-control" 
+            placeholder="Senha" 
+            required>
+        </div>
+
+        <button type="submit" class="btn btn-login">Entrar</button>
+
+        <div class="login-footer mt-3">
+          <p>É um freelancer? <a href="tela-inicial-empresa.html" class="link empresa">Clique aqui</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registerBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Animação: Ambos os painéis deslizam para a direita
+      document.querySelector('.left-panel').classList.add('slide-out-to-right');
+      document.querySelector('.right-panel').classList.add('slide-out-to-right');
+      
+      // Redireciona após a animação
+      setTimeout(function() {
+        window.location.href = 'cadastrar-freelancer.html';
+      }, 600);
+    });
+
+    // Animação de entrada quando a página carrega
+    window.addEventListener('load', function() {
+      document.querySelector('.right-panel').classList.add('slide-in-from-right');
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
