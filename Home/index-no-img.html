@@ -95,6 +95,10 @@
             max-width: 800px;
             margin: 0 auto;
         }
+
+        .i {
+            height: 50px;
+        }
         
         .search-input {
             padding: 15px 25px;
@@ -334,25 +338,29 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="img/Logo FreelaCapy branco.png" alt="Freelacapy Logo" class="imagem">
+                <img src="img/Logo FreelaCapy branco.png" alt="Freelacapy Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-house-door me-1"></i> Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-person me-1"></i> Perfil</a>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-fill me-1"></i> Perfil
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><p class="m-2">Deseja sair?</p></li>
+                            <li><a href="tela-inicial-freelancer.html"><button class="btn btn-outline-success m-2">Log out</button></a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-     <!-- Header Moderno -->
+    <!-- Header Moderno -->
     <header class="main-header">
         <div class="container text-center header-content">
             <span class="header-badge">+1000 oportunidades disponíveis</span>
@@ -361,7 +369,7 @@
         </div>
     </header>
 
-    <!-- Conteúdo principal -->
+       <!-- Conteúdo principal -->
     <main class="container my-4">
         <!-- Barra de ferramentas -->
         <div id="toolbar" class="toolbar">
@@ -370,27 +378,15 @@
                     <button class="toolbar-button me-2">
                         <i class="bi bi-briefcase-fill me-2"></i>Publicar Vaga
                     </button>
-                    <button class="toolbar-button">
-                        <i class="bi bi-plus-circle-fill me-2"></i>Novo Projeto
-                    </button>
                 </div>
             </div>
         </div>
         
-        <!-- Lista de vagas -->
-        <div class="job-container">
-            <!-- Categoria: Tecnologia e Programação -->
-            <section>
-                <h3 class="category-title mt-5">Tecnologia e Programação</h3>
-                <div class="row">
                     <!-- Vaga 1 -->
                     <div class="col-12 mb-4">
-                        <div class="card h-100">
-                            <div class="row g-0 h-100">
-                                <div class="col-md-4">
-                                    <img src="img/web.png" class="card-img" alt="Desenvolvimento Web">
-                                </div>
-                                <div class="col-md-8">
+                        <div class="card">
+                            <div class="row">
+                                <div>
                                     <div class="card-body h-100 d-flex flex-column">
                                         <div>
                                             <h5 class="card-title">Desenvolvedor Web Full Stack</h5>
@@ -400,7 +396,7 @@
                                                 <span class="badge bg-light text-dark"><i class="bi bi-clock-fill me-1"></i> Tempo integral</span>
                                                 <span class="badge bg-light text-dark"><i class="bi bi-star-fill me-1"></i> Sênior</span>
                                             </div>
-                                            <p class="card-text">Estamos buscando um desenvolvedor full stack experiente para trabalhar em um projeto de e-commerce. Requisitos: conhecimento em React, Node.js e bancos de dados SQL. O projeto tem duração estimada de 3 meses com possibilidade de extensão. Oferecemos ambiente de trabalho flexível e oportunidades de crescimento.</p>
+                                            <p class="card-text mb-3">Estamos buscando um desenvolvedor full stack experiente para trabalhar em um projeto de e-commerce. Requisitos: conhecimento em React, Node.js e bancos de dados SQL. O projeto tem duração estimada de 3 meses com possibilidade de extensão. Oferecemos ambiente de trabalho flexível e oportunidades de crescimento.</p>
                                         </div>
                                         
                                         <div class="mt-auto d-flex flex-column flex-md-row justify-content-between align-items-center">
@@ -408,9 +404,9 @@
                                                 <button type="button" class="btn btn-primary me-2">
                                                     <i class="bi bi-briefcase-fill me-1"></i>Candidatar-se
                                                 </button>
-                                                <a href="#" class="btn btn-outline-success">
+                                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalVaga1">
                                                     <i class="bi bi-eye-fill me-1"></i>Detalhes
-                                                </a>
+                                                </button>
                                             </div>
                                             <p class="last-updated mb-0"><i class="bi bi-clock-history me-1"></i>Atualizado há 2 horas</p>
                                         </div>
@@ -422,18 +418,11 @@
                 </div>
             </section>
             
-            <!-- Categoria: Design e Criatividade -->
-            <section>
-                <h3 class="category-title mt-5">Design e Criatividade</h3>
-                <div class="row">
-                    <!-- Vaga 1 -->
+                    <!-- Vaga 2 -->
                     <div class="col-12 mb-4">
-                        <div class="card h-100">
-                            <div class="row g-0 h-100">
-                                <div class="col-md-4">
-                                    <img src="img/de.png" class="card-img" alt="Design Gráfico">
-                                </div>
-                                <div class="col-md-8">
+                        <div class="card">
+                            <div>
+                                <div>
                                     <div class="card-body h-100 d-flex flex-column">
                                         <div>
                                             <h5 class="card-title">Designer Gráfico para Redes Sociais</h5>
@@ -443,7 +432,7 @@
                                                 <span class="badge bg-light text-dark"><i class="bi bi-clock-fill me-1"></i> Meio período</span>
                                                 <span class="badge bg-light text-dark"><i class="bi bi-star-fill me-1"></i> Pleno</span>
                                             </div>
-                                            <p class="card-text">Procuramos um designer criativo para criar conteúdo visual para nossas redes sociais. Você será responsável por criar posts, stories e banners seguindo nosso guia de estilo. Experiência com Adobe Creative Suite e conhecimento em marketing digital são diferenciais. Ambiente dinâmico e criativo.</p>
+                                            <p class="card-text mb-3">Procuramos um designer criativo para criar conteúdo visual para nossas redes sociais. Você será responsável por criar posts, stories e banners seguindo nosso guia de estilo. Experiência com Adobe Creative Suite e conhecimento em marketing digital são diferenciais. Ambiente dinâmico e criativo.</p>
                                         </div>
                                         
                                         <div class="mt-auto d-flex flex-column flex-md-row justify-content-between align-items-center">
@@ -451,9 +440,9 @@
                                                 <button type="button" class="btn btn-primary me-2">
                                                     <i class="bi bi-briefcase-fill me-1"></i>Candidatar-se
                                                 </button>
-                                                <a href="#" class="btn btn-outline-success">
+                                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalVaga2">
                                                     <i class="bi bi-eye-fill me-1"></i>Detalhes
-                                                </a>
+                                                </button>
                                             </div>
                                             <p class="last-updated mb-0"><i class="bi bi-clock-history me-1"></i>Atualizado ontem</p>
                                         </div>
@@ -465,18 +454,12 @@
                 </div>
             </section>
             
-            <!-- Categoria: Educação e Aulas Particulares -->
-            <section>
-                <h3 class="category-title mt-5">Educação e Aulas Particulares</h3>
-                <div class="row">
-                    <!-- Vaga 1 -->
+
+                    <!-- Vaga 3 -->
                     <div class="col-12 mb-4">
-                        <div class="card h-100">
-                            <div class="row g-0 h-100">
-                                <div class="col-md-4">
-                                    <img src="img/matema.jpg" class="card-img" alt="Aula de Matemática">
-                                </div>
-                                <div class="col-md-8">
+                        <div class="card">
+                            <div>
+                                <div>
                                     <div class="card-body h-100 d-flex flex-column">
                                         <div>
                                             <h5 class="card-title">Professor de Matemática para Ensino Médio</h5>
@@ -486,7 +469,7 @@
                                                 <span class="badge bg-light text-dark"><i class="bi bi-clock-fill me-1"></i> Meio período</span>
                                                 <span class="badge bg-light text-dark"><i class="bi bi-star-fill me-1"></i> Especialista</span>
                                             </div>
-                                            <p class="card-text">Procuramos professor de matemática para aulas particulares online para alunos do ensino médio. Requisitos: formação em matemática ou áreas afins, experiência com ensino, disponibilidade no período da tarde. Oferecemos plataforma própria e material didático.</p>
+                                            <p class="card-text mb-3">Procuramos professor de matemática para aulas particulares online para alunos do ensino médio. Requisitos: formação em matemática ou áreas afins, experiência com ensino, disponibilidade no período da tarde. Oferecemos plataforma própria e material didático.</p>
                                         </div>
                                         
                                         <div class="mt-auto d-flex flex-column flex-md-row justify-content-between align-items-center">
@@ -494,9 +477,9 @@
                                                 <button type="button" class="btn btn-primary me-2">
                                                     <i class="bi bi-briefcase-fill me-1"></i>Candidatar-se
                                                 </button>
-                                                <a href="#" class="btn btn-outline-success">
+                                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalVaga3">
                                                     <i class="bi bi-eye-fill me-1"></i>Detalhes
-                                                </a>
+                                                </button>
                                             </div>
                                             <p class="last-updated mb-0"><i class="bi bi-clock-history me-1"></i>Atualizado há 5 horas</p>
                                         </div>
@@ -506,24 +489,21 @@
                         </div>
                     </div>
                     
-                    <!-- Vaga 2 -->
+                    <!-- Vaga 4 -->
                     <div class="col-12 mb-4">
-                        <div class="card h-100">
-                            <div class="row g-0 h-100">
-                                <div class="col-md-4">
-                                    <img src="img/eng.jpg" class="card-img" alt="Aula de Inglês">
-                                </div>
-                                <div class="col-md-8">
+                        <div class="card">
+                            <div>
+                                <div>
                                     <div class="card-body h-100 d-flex flex-column">
                                         <div>
-                                            <h5 class="card-title">Professor de Inglês para Conversação</h5>
+                                            <h5 class="card-title mb-3">Professor de Inglês para Conversação</h5>
                                             <div class="d-flex flex-wrap mb-2">
                                                 <span class="badge bg-light text-dark"><i class="bi bi-geo-alt-fill me-1"></i> Online</span>
                                                 <span class="badge bg-light text-dark"><i class="bi bi-cash-stack me-1"></i> R$ 60 - R$ 100/hora</span>
                                                 <span class="badge bg-light text-dark"><i class="bi bi-clock-fill me-1"></i> Flexível</span>
                                                 <span class="badge bg-light text-dark"><i class="bi bi-star-fill me-1"></i> Nativo/Fluente</span>
                                             </div>
-                                            <p class="card-text">Escola de idiomas busca professores de inglês para aulas de conversação online. Requisitos: fluência comprovada, experiência com ensino, disponibilidade para aulas em horários variados. Oferecemos treinamento, material didático e possibilidade de crescimento.</p>
+                                            <p class="card-text mb-3">Escola de idiomas busca professores de inglês para aulas de conversação online. Requisitos: fluência comprovada, experiência com ensino, disponibilidade para aulas em horários variados. Oferecemos treinamento, material didático e possibilidade de crescimento.</p>
                                         </div>
                                         
                                         <div class="mt-auto d-flex flex-column flex-md-row justify-content-between align-items-center">
@@ -531,9 +511,9 @@
                                                 <button type="button" class="btn btn-primary me-2">
                                                     <i class="bi bi-briefcase-fill me-1"></i>Candidatar-se
                                                 </button>
-                                                <a href="#" class="btn btn-outline-success">
+                                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalVaga4">
                                                     <i class="bi bi-eye-fill me-1"></i>Detalhes
-                                                </a>
+                                                </button>
                                             </div>
                                             <p class="last-updated mb-0"><i class="bi bi-clock-history me-1"></i>Atualizado há 1 dia</p>
                                         </div>
@@ -546,6 +526,183 @@
             </section>
         </div>
     </main>
+
+    <!-- Modal Vaga 1 - Desenvolvedor Web Full Stack -->
+    <div class="modal fade" id="modalVaga1" tabindex="-1" aria-labelledby="modalVaga1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="modalVaga1Label">Desenvolvedor Web Full Stack</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>Descrição Completa:</h6>
+                            <p>Estamos buscando um desenvolvedor full stack experiente para trabalhar em um projeto de e-commerce moderno e escalável. O profissional será responsável por desenvolver tanto o frontend quanto o backend da aplicação.</p>
+                            
+                            <h6>Requisitos:</h6>
+                            <ul>
+                                <li>Experiência com React.js e Next.js</li>
+                                <li>Conhecimento em Node.js e Express</li>
+                                <li>Experiência com bancos de dados SQL (PostgreSQL/MySQL)</li>
+                                <li>Conhecimento em APIs RESTful</li>
+                                <li>Experiência com Git e metodologias ágeis</li>
+                            </ul>
+                            
+                            <h6>Detalhes do Projeto:</h6>
+                            <ul>
+                                <li><strong>Duração:</strong> 3 meses (com possibilidade de extensão)</li>
+                                <li><strong>Modalidade:</strong> Remoto</li>
+                                <li><strong>Valor:</strong> R$ 5.000 - R$ 8.000/mês</li>
+                                <li><strong>Carga horária:</strong> Tempo integral (40h/semana)</li>
+                                <li><strong>Nível:</strong> Sênior</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-briefcase-fill me-1"></i>Candidatar-se
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Vaga 2 - Designer Gráfico -->
+    <div class="modal fade" id="modalVaga2" tabindex="-1" aria-labelledby="modalVaga2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="modalVaga2Label">Designer Gráfico para Redes Sociais</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>Descrição Completa:</h6>
+                            <p>Procuramos um designer criativo e experiente para criar conteúdo visual impactante para nossas redes sociais. O profissional será responsável por desenvolver a identidade visual digital da marca.</p>
+                            
+                            <h6>Requisitos:</h6>
+                            <ul>
+                                <li>Domínio do Adobe Creative Suite (Photoshop, Illustrator, InDesign)</li>
+                                <li>Experiência em design para redes sociais</li>
+                                <li>Conhecimento em motion graphics (After Effects)</li>
+                                <li>Noções de marketing digital</li>
+                                <li>Portfolio demonstrando trabalhos anteriores</li>
+                            </ul>
+                            
+                            <h6>Detalhes do Projeto:</h6>
+                            <ul>
+                                <li><strong>Duração:</strong> 6 meses (renovável)</li>
+                                <li><strong>Modalidade:</strong> Híbrido (São Paulo/SP)</li>
+                                <li><strong>Valor:</strong> R$ 3.000 - R$ 4.500/mês</li>
+                                <li><strong>Carga horária:</strong> Meio período (20h/semana)</li>
+                                <li><strong>Nível:</strong> Pleno</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-briefcase-fill me-1"></i>Candidatar-se
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Vaga 3 - Professor de Matemática -->
+    <div class="modal fade" id="modalVaga3" tabindex="-1" aria-labelledby="modalVaga3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="modalVaga3Label">Professor de Matemática para Ensino Médio</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>Descrição Completa:</h6>
+                            <p>Procuramos professor de matemática para aulas particulares online para alunos do ensino médio. O profissional será responsável por ministrar aulas dinâmicas e personalizadas de acordo com as necessidades de cada aluno.</p>
+                            
+                            <h6>Requisitos:</h6>
+                            <ul>
+                                <li>Formação em Matemática, Engenharia ou áreas afins</li>
+                                <li>Experiência comprovada com ensino</li>
+                                <li>Domínio dos conteúdos do ensino médio</li>
+                                <li>Boa didática e capacidade de explicação</li>
+                                <li>Disponibilidade no período da tarde</li>
+                            </ul>
+                            
+                            <h6>Detalhes do Projeto:</h6>
+                            <ul>
+                                <li><strong>Duração:</strong> Contínuo</li>
+                                <li><strong>Modalidade:</strong> Online</li>
+                                <li><strong>Valor:</strong> R$ 80 - R$ 120/hora</li>
+                                <li><strong>Carga horária:</strong> Meio período (horários flexíveis)</li>
+                                <li><strong>Nível:</strong> Especialista</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-briefcase-fill me-1"></i>Candidatar-se
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Vaga 4 - Professor de Inglês -->
+    <div class="modal fade" id="modalVaga4" tabindex="-1" aria-labelledby="modalVaga4Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="modalVaga4Label">Professor de Inglês para Conversação</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>Descrição Completa:</h6>
+                            <p>Escola de idiomas busca professores de inglês para aulas de conversação online. O profissional será responsável por conduzir aulas dinâmicas e interativas, focadas no desenvolvimento da fluência oral dos alunos.</p>
+                            
+                            <h6>Requisitos:</h6>
+                            <ul>
+                                <li>Fluência comprovada em inglês (certificados ou experiência internacional)</li>
+                                <li>Experiência com ensino de idiomas</li>
+                                <li>Boa comunicação e didática</li>
+                                <li>Disponibilidade para aulas em horários variados</li>
+                                <li>Conhecimento de plataformas de ensino online</li>
+                            </ul>
+                            
+                            <h6>Detalhes do Projeto:</h6>
+                            <ul>
+                                <li><strong>Duração:</strong> Contínuo</li>
+                                <li><strong>Modalidade:</strong> Online</li>
+                                <li><strong>Valor:</strong> R$ 60 - R$ 100/hora</li>
+                                <li><strong>Carga horária:</strong> Flexível (de acordo com disponibilidade)</li>
+                                <li><strong>Nível:</strong> Nativo/Fluente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-briefcase-fill me-1"></i>Candidatar-se
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
